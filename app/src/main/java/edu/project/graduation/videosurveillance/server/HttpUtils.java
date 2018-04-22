@@ -1,5 +1,7 @@
 package edu.project.graduation.videosurveillance.server;
 
+import android.util.Log;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,6 +35,7 @@ public class HttpUtils {
             //设置请求体的长度
             httpURLConnection.setRequestProperty("Content-Length", String.valueOf(data.length));
             //获得输出流，向服务器写入数据
+//            Log.i("out", "submitPostData: "+httpURLConnection.getOutputStream().toString());
             OutputStream outputStream = httpURLConnection.getOutputStream();
             outputStream.write(data);
 
@@ -42,7 +45,7 @@ public class HttpUtils {
                 return dealResponseResult(inptStream);                     //处理服务器的响应结果
             }
         } catch (IOException e) {
-            //e.printStackTrace();
+            e.printStackTrace();
             return "err: " + e.getMessage().toString();
         }
         return "-1";
