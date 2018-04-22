@@ -2,6 +2,7 @@ package edu.project.graduation.videosurveillance.server;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,7 +41,7 @@ public class LoginActivity extends Activity{
 
         postname = name.getText().toString();
         postpasswd = passwd.getText().toString();
-        strUrlPath = "192.168.100.8";
+        strUrlPath = "http://123.207.117.28/applogint.php";
         encode = "utf-8";
 
         final Map<String,String> params = new HashMap<String,String>();;
@@ -50,8 +51,9 @@ public class LoginActivity extends Activity{
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HttpUtils.submitPostData(strUrlPath,params,encode);
-//                responseResult = HttpUtils.dealResponseResult();
+                responseResult = HttpUtils.submitPostData(strUrlPath,params,encode);
+                HttpUtils.getRequestData(params,encode);
+                Log.i("responseResult", ": "+responseResult);
             }
         });
     }

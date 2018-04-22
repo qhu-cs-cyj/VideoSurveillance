@@ -1,6 +1,7 @@
 package edu.project.graduation.videosurveillance;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.SurfaceHolder;
@@ -8,6 +9,8 @@ import android.view.SurfaceView;
 import android.widget.TextView;
 
 import java.io.IOException;
+
+import edu.project.graduation.videosurveillance.server.LoginActivity;
 
 public class MainActivity extends Activity {
 
@@ -29,6 +32,10 @@ public class MainActivity extends Activity {
 //        TextView tv = (TextView) findViewById(R.id.sample_text);
 //        tv.setText(stringFromJNI());
 
+        Intent in = new Intent();
+        in.setClass(MainActivity.this, LoginActivity.class);
+        startActivity(in);
+
         surfaceView = (SurfaceView)this.findViewById(R.id.surfaceView);
         surfaceView.getHolder().setFixedSize(768, 432);  //设置分辨率
 
@@ -42,7 +49,7 @@ public class MainActivity extends Activity {
             surfaceHolder =  surfaceView.getHolder();
             surfaceHolder.setKeepScreenOn(true);
 //            surfaceHolder.addCallback(new SurfaceLis);
-            mediaPlayer.setDataSource("http://123.207.117.28/video/请听我说 (Gra Roo Nah Fung Hai Job) 中文字幕--音悦Tai.mp4");
+            mediaPlayer.setDataSource("http://123.207.117.28/video/1.mp4");
 
 //            mediaPlayer.reset();      //重置为初始状态
 //            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
