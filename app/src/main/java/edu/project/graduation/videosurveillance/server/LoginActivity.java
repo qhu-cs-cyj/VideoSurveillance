@@ -12,9 +12,12 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -27,8 +30,8 @@ public class LoginActivity extends Activity{
     private EditText name;
     private EditText passwd;
     private String strUrlPath;
-    private String postname;
-    private String postpasswd;
+    private byte[] postname;
+    private byte[] postpasswd;
     private String encode;
     private String responseResult;
     InputStream inputStream = null;
@@ -49,11 +52,17 @@ public class LoginActivity extends Activity{
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                postname = name.getText().toString();
-                postpasswd = passwd.getText().toString();
+                try {
+                    postname = MessageDigest.getInstance("MD5").digest(name.getText().toString().getBytes("UTF-8"));
+                    postname = MessageDigest.getInstance("MD5").digest(passwd.getText().toString().getBytes("UTF-8"));
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
                 final Map<String,String> params = new HashMap<String,String>();
-                params.put("username",postname);
-                params.put("userpasswd",postpasswd);
+                params.put("username",new String(postname));
+                params.put("userpasswd",new String(postpasswd));
 
                 new Thread(new Runnable() {
                     @Override
