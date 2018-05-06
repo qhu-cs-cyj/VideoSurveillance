@@ -54,7 +54,7 @@ public class LoginActivity extends Activity{
             public void onClick(View v) {
                 try {
                     postname = MessageDigest.getInstance("MD5").digest(name.getText().toString().getBytes("UTF-8"));
-                    postname = MessageDigest.getInstance("MD5").digest(passwd.getText().toString().getBytes("UTF-8"));
+                    postpasswd = MessageDigest.getInstance("MD5").digest(passwd.getText().toString().getBytes("UTF-8"));
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 } catch (UnsupportedEncodingException e) {

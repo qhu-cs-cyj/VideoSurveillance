@@ -18,6 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".server.LoginActivity"></activity>
+        <activity android:name=".SelctActivity"></activity>
+        <activity android:name=".PlayActivity"></activity>
     </application>
 
 </manifest>
